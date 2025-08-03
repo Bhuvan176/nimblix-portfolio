@@ -52,15 +52,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-indigo-400" />
-                <span className="text-gray-300">Koramangala, Bangalore, India</span>
+                <span className="text-gray-300">#236 92/1A, Venkataadri IT City, HP Avenue road, Electronic city, Bengaluru 560100</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-indigo-400" />
-                <span className="text-gray-300">+91 98765 43210</span>
+                <span className="text-gray-300">+91 8123402974</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-indigo-400" />
-                <span className="text-gray-300">hello@nimblix.tech</span>
+                <span className="text-gray-300">info@nimblix.com</span>
               </div>
             </div>
           </div>

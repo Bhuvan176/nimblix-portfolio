@@ -9,26 +9,33 @@ const About = () => {
     threshold: 0.1,
   });
 
+  const stats = [
+    { label: 'End-to-End Digital Solutions', icon: '⚙️' },
+    { label: 'Results-Driven Marketing Approach', icon: '📈' },
+    { label: 'Customized Strategies for Every Brand', icon: '🎯' },
+    { label: 'Innovation-Focused Development', icon: '💡' }
+  ];
+
   const features = [
     {
       icon: Lightbulb,
-      title: 'Next-Gen Innovation',
-      description: 'We leverage AI, ML, cloud, IoT, and cutting-edge technologies to build intelligent digital ecosystems.',
+      title: 'Innovation First',
+      description: 'We embrace cutting-edge technologies and creative solutions to solve complex problems.',
     },
     {
       icon: Users,
       title: 'Startup Agility',
-      description: 'As a dynamic startup, we move fast and collaborate deeply to deliver results quickly and efficiently.',
+      description: 'Fast decision-making and rapid iteration to deliver results quickly and efficiently.',
     },
     {
       icon: Rocket,
-      title: 'Scalable Growth',
-      description: 'We create enterprise-grade platforms and solutions that evolve with your business and future needs.',
+      title: 'Growth Focused',
+      description: 'We build scalable solutions that grow with your business and adapt to changing needs.',
     },
     {
       icon: Target,
-      title: 'Client-First Approach',
-      description: 'We act as true partners—understanding your goals and delivering measurable impact on every project.',
+      title: 'Results Driven',
+      description: 'Every project is measured by its impact and the value it brings to our clients.',
     },
   ];
 
@@ -46,26 +53,45 @@ const About = () => {
             About <span className="text-indigo-600">Nimblix</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We are a passionate startup consultancy delivering next-generation technology solutions with agility, creativity, and impact.
+            We're a passionate startup on a mission to transform the digital landscape through innovative technology solutions.
           </p>
         </motion.div>
-
+        
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Who We Are</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              Nimblix Technologies OPC Pvt Ltd is an emerging leader in IT services, consulting, and digital transformation based in Bengaluru, India.
-              We partner with startups, SMEs, and enterprises to deliver scalable, AI-powered, and cloud-native platforms that accelerate growth.
+              Founded by a team of passionate technologists, Nimblix Technologies emerged from the belief that 
+              every great idea deserves exceptional execution. As a startup, we combine the energy and innovation 
+              of a young company with the expertise and dedication of seasoned professionals.
             </p>
-            <p className="text-gray-600 leading-relaxed">
-              As a lean and highly-skilled team, we blend startup agility with enterprise-grade expertise across business consulting, software development, integrations, DevOps, cybersecurity, analytics, and emerging technologies.
+            <p className="text-gray-600 mb-8 leading-relaxed">
+              We specialize in creating digital solutions that not only meet today's needs but anticipate 
+              tomorrow's challenges. From AI-powered applications to scalable web platforms, we're building 
+              the future, one line of code at a time.
             </p>
+            
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                  className="text-center p-4 bg-white rounded-lg shadow-sm"
+                >
+                  <div className="text-3xl mb-2">{stat.icon}</div>
+                  <div className="text-gray-600 font-medium">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
-
+          
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
