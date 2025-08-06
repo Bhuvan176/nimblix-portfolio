@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Smartphone, Cloud, Brain, Database, Shield } from 'lucide-react';
+import { Code, Smartphone, Cloud, Brush, Server, Globe, Calendar } from 'lucide-react';
 
 const Services = () => {
   const [ref, inView] = useInView({
@@ -9,50 +9,71 @@ const Services = () => {
     threshold: 0.1,
   });
 
+  // State for availability checker
+  const [selectedDate, setSelectedDate] = useState('');
+  const [availabilityMessage, setAvailabilityMessage] = useState('');
+
   const services = [
     {
       icon: Code,
-      title: 'Web Development',
-      description: 'Modern, responsive web applications built with cutting-edge frameworks and technologies.',
-      technologies: ['React', 'Next.js', 'Node.js', 'TypeScript'],
+      title: 'Product Development Services',
+      description: 'Comprehensive development of websites, APIs, and mobile applications tailored to your business needs.',
+      technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Python', 'Java', 'Flutter'],
       gradient: 'from-blue-500 to-cyan-500',
+    },
+    {
+      icon: Brush,
+      title: 'UI/UX & Design Services',
+      description: 'Crafting intuitive and visually appealing designs with Figma, prototyping, and wireframing.',
+      technologies: ['Figma', 'Sketch', 'Adobe XD', 'React JS', 'Prototyping', 'Wireframing'],
+      gradient: 'from-purple-500 to-pink-500',
+    },
+    {
+      icon: Server,
+      title: 'Backend & DevOps Services',
+      description: 'Robust backend solutions with cloud deployment (AWS, Azure, GCP) and DevOps (CI/CD, containerization).',
+      technologies: ['Java','Python','AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'Jenkins'],
+      gradient: 'from-green-500 to-teal-500',
+    },
+    {
+      icon: Globe,
+      title: 'Web & Marketing Support Services',
+      description: 'Building company portfolio websites, landing pages for promotions, and optimizing for SEO and performance.',
+      technologies: ['WordPress', 'SEO', 'Google Analytics', 'Landing Page Optimization'],
+      gradient: 'from-orange-500 to-red-500',
+    },
+    {
+      icon: Calendar,
+      title: 'Booth Rental & Availability',
+      description: 'Seamless booth rental services for events or salons, with real-time availability checking and booking.',
+      technologies: ['BoothBook', 'Calendar API', 'Stripe', 'Custom CRM'],
+      gradient: 'from-indigo-500 to-purple-500',
     },
     {
       icon: Smartphone,
       title: 'Mobile Development',
       description: 'Native and cross-platform mobile apps that deliver exceptional user experiences.',
-      technologies: ['React Native', 'Flutter', 'iOS', 'Android'],
-      gradient: 'from-purple-500 to-pink-500',
-    },
-    {
-      icon: Cloud,
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and services for modern applications.',
-      technologies: ['AWS', 'Azure', 'Docker', 'Kubernetes'],
-      gradient: 'from-green-500 to-teal-500',
-    },
-    {
-      icon: Brain,
-      title: 'AI & Machine Learning',
-      description: 'Intelligent solutions powered by artificial intelligence and machine learning.',
-      technologies: ['Python', 'TensorFlow', 'PyTorch', 'OpenAI'],
-      gradient: 'from-orange-500 to-red-500',
-    },
-    {
-      icon: Database,
-      title: 'Data Analytics',
-      description: 'Transform raw data into actionable insights with advanced analytics.',
-      technologies: ['Python', 'R', 'Tableau', 'MongoDB'],
-      gradient: 'from-indigo-500 to-purple-500',
-    },
-    {
-      icon: Shield,
-      title: 'Cybersecurity',
-      description: 'Comprehensive security solutions to protect your digital assets.',
-      technologies: ['Security Audits', 'Penetration Testing', 'Compliance', 'Risk Assessment'],
+      technologies: ['React Native', 'Flutter', 'iOS','Java','Python', 'Android'],
       gradient: 'from-gray-600 to-gray-800',
     },
   ];
+
+  // Mock availability check function (replace with API call in production)
+  const checkAvailability = (e) => {
+    e.preventDefault();
+    if (!selectedDate) {
+      setAvailabilityMessage('Please select a date.');
+      return;
+    }
+    // Mock logic: Assume booths are available except on weekends
+    const date = new Date(selectedDate);
+    const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+    setAvailabilityMessage(
+      isWeekend
+        ? 'Sorry, booths are fully booked on weekends.'
+        : 'Booths are available on the selected date!'
+    );
+  };
 
   return (
     <section id="services" className="py-20 bg-white">
@@ -79,16 +100,11 @@ const Services = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-gray-200"
             >
-              {/* Icon */}
               <div className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                 <service.icon className="h-8 w-8 text-white" />
               </div>
-
-              {/* Content */}
               <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-
-              {/* Technologies */}
               <div className="flex flex-wrap gap-2">
                 {service.technologies.map((tech, techIndex) => (
                   <span
@@ -99,13 +115,10 @@ const Services = () => {
                   </span>
                 ))}
               </div>
-
-              {/* Hover Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </motion.div>
           ))}
         </div>
-
         {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

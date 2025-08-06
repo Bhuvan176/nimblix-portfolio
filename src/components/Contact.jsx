@@ -235,7 +235,7 @@ const Contact = () => {
                   </>
                 ) : (
                   <>
-                    Send Message
+                    Get In Touch
                     <Send className="ml-2 h-5 w-5" />
                   </>
                 )}

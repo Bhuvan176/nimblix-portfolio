@@ -39,8 +39,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <Code className="h-8 w-8 text-indigo-400" />
-              <span className="text-2xl font-bold">Nimblix</span>
+              <img src="/nimblix-logo1.jpeg" style={{height: '70px',width: 'auto',fill: '#4f46e5'}} />
               <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
