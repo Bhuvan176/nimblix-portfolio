@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
-import { motion, px } from 'framer-motion';
+import { motion } from 'framer-motion';
+import logo from '../assets/nimblix-logo.jpeg'; // Ensure this path matches your file structure
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,33 +67,32 @@ const Navbar = () => {
         <div className="container mx-auto px-4 flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-          <img
-            src="/nimblix-logo.jpeg"
-            alt="Nimblix Logo" t="Nimblix Logo"
-  style={{ 
-    height: '80px',
-    width: 'auto',
-    fill: '#4f46e5'  // Change SVG color
-  }}
-    />
-  </div>
+            <img
+              src={logo} // Use imported logo
+              alt="Nimblix Logo"
+              style={{ 
+                height: '80px',
+                width: 'auto',
+              }}
+              onError={(e) => console.error('Image failed to load:', e)} // Debug loading issues
+            />
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            
             <ul className={`nav-menu ${isOpen ? 'active' : ''}`} id="nav-menu">
-          {navItems.map((item) => (
-            <li key={item.name}>
-              <a
-                href={item.href}
-                className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Mobile Menu Button */}
@@ -133,15 +133,25 @@ const Navbar = () => {
         </motion.div>
       </motion.nav>
 
-      {/* Add smooth scrolling CSS */}
+      {/* Add smooth scrolling CSS and nav styles */}
       <style jsx global>{`
         html {
           scroll-behavior: smooth;
         }
         
-        /* Ensure sections have proper IDs */
         section[id] {
           scroll-margin-top: 80px;
+        }
+
+        .nav-link {
+          font-medium text-gray-700 hover:text-indigo-500 transition-colors duration-300;
+          padding: 8px 16px;
+        }
+
+        .nav-link.active {
+          color: #4f46e5;
+          font-weight: 600;
+          border-bottom: 2px solid #4f46e5;
         }
       `}</style>
     </>
@@ -149,4 +159,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

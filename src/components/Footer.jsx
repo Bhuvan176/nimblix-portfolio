@@ -1,6 +1,6 @@
 import React from 'react';
 import { Code, Mail, Phone, MapPin, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
-
+import logo1 from '../assets/nimblix-logo1.jpeg'; 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -39,8 +39,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <img src="/nimblix-logo1.jpeg" style={{height: '70px',width: 'auto',fill: '#4f46e5'}} />
-              <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+              <img src={logo1} style={{height: '70px',width: 'auto',fill: '#4f46e5'}} />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               We're a passionate startup transforming ideas into powerful digital solutions. 
